@@ -44,17 +44,19 @@ scanf("%d",&ftr[num].cantidad);//Almacenamos La Cantidad De Producto En La Varia
 printf("\nIngrese El Precio Del Producto\n-");
 scanf("%f",&ftr[num].pdp);//Almacenamos LEl Precio Del Producto En La Variablle ftr.pdp/
 }
+getchar();//borra la basura del buffer de entrada 
 printf("\nVentas:\n");
 for (num=0;num<clientes;num++)
 {
-printf("\n\nVenta#%d\n",num+1);  
+printf("\n\nVenta#%d:\n",num+1);  
 ftr[num].subtotal=(ftr[num].pdp*ftr[num].cantidad);
 incremento=(ftr[num].subtotal*porciento7);
 ftr[num].total=(ftr[num].subtotal+incremento);
-printf("\tDistribuidora:%s\nCliente:%s\nProducto:%s\nTipo:%s\nCantidad:%d\nPrecio:$%.2f\nSubTotal:$%.2f\t\tImpuesto:$%.2f\nTotal:$%.2f\n"
+printf("\tDistribuidora:%s\n\nCliente:%s\nProducto:%s\nTipo:%s\nCantidad:%d\nPrecio:$%.2f\nSubTotal:$%.2f\t\tImpuesto:$%.2f\nTotal:$%.2f\n"
 ,ftr[num].ndd,ftr[num].ndc,ftr[num].ndp,ftr[num].tdp,ftr[num].cantidad,ftr[num].pdp,ftr[num].subtotal,incremento,ftr[num].total);
 }
 //----------------------------------//
+getchar();//borra la basura del buffer de entrada 
 printf("\nPresione enter para cerrar\n");
 getch();
 return 0;
