@@ -1,0 +1,186 @@
+
+menu /(sera solo 1 cliente)
+1- regitrar un pasajero
+
+2- calcular importe del viaje / precioboleto - variable
+
+3- imprimir datos del pasajero e importe
+
+4- grabar y cerrar / grabar los mismo datos que se imprimen en pantalla con archivos
+
+opcion 1 del menu -
+el programa debe solicitar el codigo del pasajero, ciudad destino y ciudad origen, distancia de las ciudades en kilometos
+
+el programa debe de facturar incluido el itbm de la siguiente manera;
+si la distancia es menos a 400 km el boleto costara 100 dolares
+si la distancia es de 400 a 800 el boleto costara 250 dolares
+si la distancia es mas de 800 es 1000 dolares
+
+
+crea un menu en codigo c++ con las siguientes opciones.
+
+1- Registrar un pasajero
+2- Calcular importe del viaje
+3- Imprimir datos del pasajero
+4- Grabar y cerrar 
+
+en la opcion 1- registrar un pasajero se pediran los siguientes datos:
+codigo del pasajero
+ciudad de destino
+ciudad de origen
+distancia entre las ciudades en kilometos
+
+en la opcion 2- calcular importe del viaje se calculara de la siguiente forma:
+si la distancia es menor a 400 kilometros el boleto sera de 100 dolares
+si la distancia es mayor a 400 kilometros y menor o igual a 800 kilometros el boleto sera de 250 dolares
+si la distancia es mayor a 800 el boleto sera de 1000 dolares 
+tiene que añadir el 7% al precio del boleto
+
+en la opcion 3- imprimir datos del pasajero se imprimiran todos los datos pedidos y el precio del boleto
+
+en la opcion 4- grabar y cerrar 
+
+
+
+
+
+banco
+escribir un programa que simule operaciones de un banco para un solo cliente y una sola cuenta / con bariables
+mediante un menu
+1- ingresa datos cliente y cuenta
+2- realiza un deposito a la cuenta
+3- efectua un retiro de la cuenta
+4- salir y grabar en archivo
+
+opcion 1, debe solicitar el nombre del cliente y generar aleatoriamente una cuenta cuenta de 4 digitos ramdons e imprimir
+solicitar el saldo de apertura, mayor de 10 dolares 
+
+opcion 2, numero de la cuenta, (tiene que coincidir con el numero generado, si no es el mismo no deberia funcionar) verificar si conincide, en caso afirmativo solicitar la cantidad de deposito el cual debe sumarse al saldo de apertura, 
+
+opcion 3, solicita numero de la cuenta y si coincide pedir la cantidad a retirar, si hay saldo se retira el retiro, si no hay saldo que imprima un mensaje " sin fondos"
+
+opcion 4, grabar los datos en un archivo y salir.
+
+
+
+tarjeta
+simular la operacion de una tarjeta mediante el siguiente menu
+
+1- emitir una tarjeta
+2- realizar una compra con la tarjeta
+3- realizar un pago al saldo de la tarjeta
+4- salir y grabar
+
+opcion 1, debe solicitar nombre del cliente luego el monto del salario de la persona, si el salario es menor a 1k de dolares, generar una tarjeta con un disponible de 1k dolares, mayor de 1k entonces 5k dolares y que genere una tarjeta de 8  digitos
+
+opcion 2, realizar una compra, solicita el numero de la tarjeta, si conincide, solicitar la cantidad a comprar, verificar que la conpra no exeda el disponible, si no exede realiza la conpra en caso contrario no podra, realizar la siguiente operacion
+disponible tarjeta = disponible - compra
+saldo = saldo + compra
+
+opcion 3, solicita el numero de la tarjeta y si conincide la cantidad a pagar se suma al disponible y se resta del saldo
+
+nuestro grupo les toca el banco bancooo
+
+
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+using namespace std;
+
+struct Pasajero {
+    int codigo;
+    string origen;
+    string destino;
+    int distancia;
+    float precio;
+};
+
+int menu() {
+    int opcion = 0;
+    cout << endl;
+    cout << "1- Registrar un pasajero" << endl;
+    cout << "2- Calcular importe del viaje" << endl;
+    cout << "3- Imprimir datos del pasajero" << endl;
+    cout << "4- Grabar y cerrar" << endl;
+    cout << "Elija una opcion: ";
+    cin >> opcion;
+    return opcion;
+}
+
+void registrarPasajero(Pasajero &p) {
+    cout << "Ingrese el codigo del pasajero: ";
+    cin >> p.codigo;
+    cout << "Ingrese la ciudad de origen: ";
+    cin >> p.origen;
+    cout << "Ingrese la ciudad de destino: ";
+    cin >> p.destino;
+    cout << "Ingrese la distancia entre las ciudades en kilometros: ";
+    cin >> p.distancia;
+}
+
+void calcularImporte(Pasajero &p) {
+    if (p.distancia <= 400) {
+        p.precio = 100;
+    } else if (p.distancia > 400 && p.distancia <= 800) {
+        p.precio = 250;
+    } else {
+        p.precio = 1000;
+    }
+    p.precio *= 1.07; 
+    cout << "El precio del boleto es: " << p.precio << " dolares" << endl;
+}
+
+void imprimirDatos(Pasajero &p) {
+    cout << "Codigo: " << p.codigo << endl;
+    cout << "Origen: " << p.origen << endl;
+    cout << "Destino: " << p.destino << endl;
+    cout << "Distancia: " << p.distancia << " km" << endl;
+    cout << "Precio del boleto: $" << p.precio << endl;
+}
+
+void guardarDatos(Pasajero &p) {
+    ofstream archivo("pasajeros.txt", ios::app);
+    archivo << p.codigo << " " << p.origen << " " << p.destino << " " << p.distancia << " " << p.precio << endl;
+    archivo.close();
+}
+
+int main() {
+    Pasajero p;
+    int opcion = 0;
+    do {
+        
+        opcion = menu();
+        switch(opcion) {
+            case 1:
+                registrarPasajero(p);
+                break;
+            case 2:
+                calcularImporte(p);
+                break;
+            case 3:
+                imprimirDatos(p);
+                break;
+            case 4:
+                guardarDatos(p);
+                cout << "Datos guardados correctamente en pasajeros.txt" << endl;
+                break;
+            default:
+                cout << "Opción no válida" << endl;
+                break;
+        }
+        system("pause");
+        system("cls");
+    } while (opcion != 4);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
