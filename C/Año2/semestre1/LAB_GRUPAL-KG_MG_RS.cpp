@@ -17,23 +17,19 @@ Raul serrano 	6-723-584
 
 */
 
-
-
-
-
-
 #include<iostream>
 #include<fstream> //libreria para archivos
 #include<stdlib.h>
 #include<cstdlib>//Librerias para generar los 4 digitos aleatorios
 #include<ctime>
+#include<limits>
 using namespace std;
 
 struct Datos
 {
     string Nombre,Cedula;
     int Numero_Cuenta=0;
-    double Saldo;
+    float Saldo;
 };
 typedef struct Datos dt;
 
@@ -41,7 +37,7 @@ int main() /*Funcion Principal Main */
 {
     dt Datos[5];
     /***Declaraciones***/
-    int Menu(void); // Prototipo Men�
+    int Menu(void); // Prototipo Menu
     void Ingresar_Datos(dt[]); //Prototipo de captura datos
     void Deposito(dt[]); // Prototipo de deposito
     void Retiro(dt[]); // Prototipo de retiro
@@ -108,29 +104,52 @@ int Menu(void) // Funcion menu
     return Num;
 }
 
-void Ingresar_Datos(dt Datos[5]) // Captura los datos de un nuevo cliente y los almacena en el arreglo de estructuras "Datos".
-{
-    cout<<"Ingrese su nombre"<<endl;
-    cin>>Datos[1].Nombre;
-    cout<<"Ingrese cedula"<<endl;
-    cin>>Datos[1].Cedula;
-    cout<<"Ingrese saldo de apertura"<<endl;
-    cin>>Datos[1].Saldo;
-    if (Datos[1].Saldo<10)
-    {
-    	cout<<"\tERROR"<<endl;
-        cout<<"La cuenta no se creo, El monto minimo es 10 dolares"<<endl;
-        system("pause"); system("cls");
+void Ingresar_Datos(dt Datos[5]) {
+    cout << "Ingrese su nombre: ";
+    cin >> Datos[1].Nombre;
+    cout << "Ingrese cedula: ";
+    cin >> Datos[1].Cedula;
+    string Saldo;
+    bool valorInvalido = true;
+    while (valorInvalido) {//!mientras valor invalido sea true ,while se ejecuta hasta que valor invalido sea igual a false
+        cout << "Ingrese Saldo de apertura: ";
+        cin >> Saldo;
+        // Verificar si la cadena ingresada contiene solo dígitos
+        bool esNumero = true;
+        for (char c : Saldo) {
+            if (!isdigit(c)&& c != '.') {
+                esNumero = false;
+                break;
+            }
+        }
+        if (esNumero) {
+            //!Convertir la cadena a un número entero
+            Datos[1].Saldo = stof(Saldo);
+            valorInvalido = false;
+        }
+        else {
+            cout << "Se ha ingresado un valor inválido. Intente nuevamente." << endl;
+            cin.clear(); // Restablecer el estado del objeto cin
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+        }
     }
-    else
-    {
-        srand(time(NULL));
-        Datos[1].Numero_Cuenta=rand()% 9000 + 1000;
+    
+    if (Datos[1].Saldo < 10) {
+        cout << "\tERROR" << endl;
+        cout << "La cuenta no se creó. El monto mínimo es de 10 dólares." << endl;
+        system("pause");
         system("cls");
-        cout<<"\tCUENTA CREADA\n\t---------------\n\n";
-        cout<<"La cuenta se a creado Exitosamente...\n"<<endl;
-        cout<<"NUMERO DE CUENTA: "<<Datos[1].Numero_Cuenta<<endl<<"\n! ADVERTENCIA: NO OLVIDE SU NUMERO DE CUENTA, PORQUE SE USARA COMO CONTRASENIA PARA ADCEDER A OTRAS OPCIONES DEL MENU !"<<endl<<endl;
-        system("pause"); system("cls");
+    }
+    else {
+        srand(time(NULL));
+        Datos[1].Numero_Cuenta = rand() % 9000 + 1000;
+        system("cls");
+        cout << "\tCUENTA CREADA\n\t---------------\n\n";
+        cout << "La cuenta se ha creado exitosamente." << endl;
+        cout << "NUMERO DE CUENTA: " << Datos[1].Numero_Cuenta << endl;
+        cout << "! ADVERTENCIA: NO OLVIDE SU NUMERO DE CUENTA, PORQUE SE USARÁ COMO CONTRASEÑA PARA ACCEDER A OTRAS OPCIONES DEL MENÚ !" << endl << endl;
+        system("pause");
+        system("cls");
     }
 }
 
@@ -138,16 +157,38 @@ void Deposito(dt Datos[5]) // Permite realizar un dep�sito en la cuenta de un 
 {
     cout<<"Ingrese su numero de cuenta"<<endl;
     int Numero;
-    double Saldo;
+    string Saldo;
     cin>>Numero; cout<<endl; system("cls");
     if (Numero==Datos[1].Numero_Cuenta)
     {
     	cout<<"\tDEPOSITANDO MONTO\n"<<endl;
-        cout<<"Ingrese el monto a depositar"<<endl;
-        cin>>Saldo;system("cls");
-        Datos[1].Saldo=Saldo+Datos[1].Saldo;
+        
+        bool valorInvalido = true;
+        while (valorInvalido) {//!mientras valor invalido sea true ,while se ejecuta hasta que valor invalido sea igual a false
+        cout << "Ingrese Saldo de apertura: ";
+        cin >> Saldo;
+        // Verificar si la cadena ingresada contiene solo dígitos
+        bool esNumero = true;
+        for (char c : Saldo) {
+            if (!isdigit(c)&& c != '.') {//! Si el caracter no es un dígito ni un punto decimal
+                esNumero = false;
+                break;
+            }
+        }
+        if (esNumero) {
+            //!Convertir la cadena a un número entero
+            Saldo = stof(Saldo);
+            valorInvalido = false;
+        }
+        else {
+            cout << "Se ha ingresado un valor inválido. Intente nuevamente." << endl;
+            cin.clear(); // Restablecer el estado del objeto cin
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+        }
+    }
+        Datos[1].Saldo = stof(Saldo) + Datos[1].Saldo;
         cout<<"\tMONTO ACTUALIZADO\n"<<endl;
-		cout<<"su nuevo saldo es: "<<Datos[1].Saldo<<endl<<endl; 
+		cout<<"su nuevo Saldo es: "<<Datos[1].Saldo<<endl<<endl; 
 		system("pause"); system("cls");    
 	}
     else
@@ -161,32 +202,53 @@ void Retiro(dt Datos[5]) // Permite realizar un retiro de la cuenta de un client
 {
     cout<<"Ingrese su numero de cuenta"<<endl;
     int Numero;
-    double Saldo;
+    string Saldo;
     cin>>Numero; system("cls");
     if (Numero==Datos[1].Numero_Cuenta)
     {
         if (Datos[1].Saldo!=0)
         {
         	cout<<"\tRETIRANDO MONTO\n"<<endl;
-            cout<<"Su saldo es de: "<<Datos[1].Saldo<<endl;
+            cout<<"Su Saldo es de: "<<Datos[1].Saldo<<endl;
+            bool valorInvalido = true;
+            while (valorInvalido) {//!mientras valor invalido sea true ,while se ejecuta hasta que valor invalido sea igual a false
             cout<<"Cuanto desea retirar?"<<endl;
             cin>>Saldo;
-            if (Saldo<Datos[1].Saldo)
-            {
-                cout<<"Retiro: "<<Saldo<<endl;
-                Datos[1].Saldo=Datos[1].Saldo-Saldo;
-                cout<<"Su nuevo saldo es de: "<<Datos[1].Saldo<<endl<<endl; 
-                system("pause"); system("cls");
+            // Verificar si la cadena ingresada contiene solo dígitos
+            bool esNumero = true;
+            for (char c : Saldo) {
+                if (!isdigit(c)&& c != '.') {
+                    esNumero = false;
+                    break;
+                }
             }
-            else{
-                cout<<"La cantidad ingresada excede el la cantidad disponible "<<endl;
-                
+            if (esNumero) {
+                //!Convertir la cadena a un número 
+                Saldo = stof(Saldo);
+                valorInvalido = false;
             }
+            else {
+                cout << "Se ha ingresado un valor inválido. Intente nuevamente." << endl;
+                cin.clear(); // Restablecer el estado del objeto cin
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+            }
+    }
+            float saldoRetiro = stof(Saldo);
+            if (saldoRetiro <= Datos[1].Saldo) {
+            cout << "Retiro: " << saldoRetiro << endl;
+            Datos[1].Saldo -= saldoRetiro;
+            cout << "Su nuevo Saldo es de: " << Datos[1].Saldo << endl << endl;
+            system("pause");
+            system("cls");
+    }
+            else {
+            cout << "La cantidad ingresada excede la cantidad disponible." << endl;
+}
             
         }
         else
         {
-            cout<<"Su saldo es de: "<<Datos[1].Saldo<<endl; 
+            cout<<"Su Saldo es de: "<<Datos[1].Saldo<<endl; 
 			system("pause"); system("cls");
         }
     }
@@ -205,10 +267,12 @@ void Consulta(dt Datos[5])//Muestra la informaci�n de la cuenta de un cliente 
 	cout<<"Ingrese su numero de cuenta"<<endl;
 	cin>>Numero;
     system("cls");
+    bool cuentaEncontrada = false;
     if (Numero==Datos[1].Numero_Cuenta)
     {
 	   if (Datos[1].Numero_Cuenta!=0)
 	   {
+        cuentaEncontrada = true;
 	    cout<<"               SISTEMA CLAVE "<<endl;
         cout<<"               BANCO  UNIDOS "<<endl;
         cout<<"-------------------------------------------"<<endl;
@@ -217,7 +281,7 @@ void Consulta(dt Datos[5])//Muestra la informaci�n de la cuenta de un cliente 
         cout<<"-Numero de cuenta:          "<<Datos[1].Numero_Cuenta<<endl;
         cout<<""<<endl;
         cout<<""<<endl;
-        cout<<"                 NUEVO SALDO"<<endl;
+        cout<<"                 NUEVO Saldo"<<endl;
         cout<<"DIS  :     "<<Datos[1].Saldo<<endl;
         cout<<"TOTAL:     "<<Datos[1].Saldo<<endl;
 	    cout<<""<<endl;
@@ -226,11 +290,15 @@ void Consulta(dt Datos[5])//Muestra la informaci�n de la cuenta de un cliente 
         cout<<"-------------------------------------------"<<endl;
 	    system("pause"); system("cls");
 	   }
-	        else
-	        {
-	        cout<<endl<<"Debe registrar un cliente antes de hacer una consulta"<<endl;	
-	        system("pause"); system("cls");
-	        }
+	    else
+	    {
+	    cout<<endl<<"Debe registrar un cliente antes de hacer una consulta"<<endl;	
+	    system("pause"); system("cls");
+	    }
+    }
+    if (!cuentaEncontrada)
+    {
+    cout << "El número de cuenta no se encuentra registrado." << endl;
     }
     }
 void Grabar(dt Datos[5])//Graba los datos de la cuenta de un cliente en un archivo llamado "datos_banco.txt".
@@ -245,7 +313,7 @@ void Grabar(dt Datos[5])//Graba los datos de la cuenta de un cliente en un archi
     Recibo<<"-Numero de cuenta:          "<<Datos[1].Numero_Cuenta<<endl;
     Recibo<<""<<endl;
     Recibo<<""<<endl;
-    Recibo<<"                 NUEVO SALDO"<<endl;
+    Recibo<<"                 NUEVO Saldo"<<endl;
     Recibo<<"DIS  :     "<<Datos[1].Saldo<<endl;
     Recibo<<"TOTAL:     "<<Datos[1].Saldo<<endl;
     Recibo<<""<<endl;
@@ -255,3 +323,4 @@ void Grabar(dt Datos[5])//Graba los datos de la cuenta de un cliente en un archi
     cout<<endl<<"Se acreado el archivo datos_banco.txt con !EXITO!"<<endl;
     Recibo.close();
 }
+
