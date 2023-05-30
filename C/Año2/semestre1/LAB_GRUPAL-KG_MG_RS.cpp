@@ -86,8 +86,10 @@ int main() /*Funcion Principal Main */
 /***Deficiones de las Funciones**/
 int Menu(void) // Funcion menu 
 {
-	
-    int Num;
+    string Num;
+    int numero;
+    bool valorInvalido = true;
+            while (valorInvalido) {//!mientras valor invalido sea true ,while se ejecuta hasta que valor invalido sea igual a false
     cout<<endl<<"**********"<<endl;
     cout<<endl<<"*        Banco UNIDOS        *"<<endl;
     cout<<endl<<"**********"<<endl;
@@ -101,7 +103,27 @@ int Menu(void) // Funcion menu
     cout<<endl<<"*     INGRESE UNA OPCION     *"<<endl;
     cout<<endl<<"**********"<<endl;
     cin>>Num;
-    return Num;
+
+            // Verificar si la cadena ingresada contiene solo dígitos
+            bool esNumero = true;
+            for (char c : Num) {
+                if (!isdigit(c)&& c) {
+                    esNumero = false;
+                    break;
+                }
+            }
+            if (esNumero) {
+                //!Convertir la cadena a un número
+                numero=stoi(Num);
+                valorInvalido = false;
+            }
+            else {
+                cout << "Se ha ingresado un valor invalido. Intente nuevamente." << endl;
+                cin.clear(); // Restablecer el estado del objeto cin
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+            }
+            }
+    return numero;
 }
 
 void Ingresar_Datos(dt Datos[5]) {
@@ -128,7 +150,7 @@ void Ingresar_Datos(dt Datos[5]) {
             valorInvalido = false;
         }
         else {
-            cout << "Se ha ingresado un valor inválido. Intente nuevamente." << endl;
+            cout << "Se ha ingresado un valor invalido. Intente nuevamente." << endl;
             cin.clear(); // Restablecer el estado del objeto cin
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
         }
@@ -136,7 +158,7 @@ void Ingresar_Datos(dt Datos[5]) {
     
     if (Datos[1].Saldo < 10) {
         cout << "\tERROR" << endl;
-        cout << "La cuenta no se creó. El monto mínimo es de 10 dólares." << endl;
+        cout << "La cuenta no se creo. El monto mínimo es de 10 dolares." << endl;
         system("pause");
         system("cls");
     }
@@ -147,7 +169,7 @@ void Ingresar_Datos(dt Datos[5]) {
         cout << "\tCUENTA CREADA\n\t---------------\n\n";
         cout << "La cuenta se ha creado exitosamente." << endl;
         cout << "NUMERO DE CUENTA: " << Datos[1].Numero_Cuenta << endl;
-        cout << "! ADVERTENCIA: NO OLVIDE SU NUMERO DE CUENTA, PORQUE SE USARÁ COMO CONTRASEÑA PARA ACCEDER A OTRAS OPCIONES DEL MENÚ !" << endl << endl;
+        cout << "! ADVERTENCIA: NO OLVIDE SU NUMERO DE CUENTA, PORQUE SE USARa COMO CONTRASEÑA PARA ACCEDER A OTRAS OPCIONES DEL MENÚ !" << endl << endl;
         system("pause");
         system("cls");
     }
@@ -165,7 +187,7 @@ void Deposito(dt Datos[5]) // Permite realizar un dep�sito en la cuenta de un 
         
         bool valorInvalido = true;
         while (valorInvalido) {//!mientras valor invalido sea true ,while se ejecuta hasta que valor invalido sea igual a false
-        cout << "Ingrese Saldo de apertura: ";
+        cout << "Ingrese Saldo a ingresar: ";
         cin >> Saldo;
         // Verificar si la cadena ingresada contiene solo dígitos
         bool esNumero = true;
@@ -177,17 +199,16 @@ void Deposito(dt Datos[5]) // Permite realizar un dep�sito en la cuenta de un 
         }
         if (esNumero) {
             //!Convertir la cadena a un número entero
-            Saldo = stof(Saldo);
             valorInvalido = false;
         }
         else {
-            cout << "Se ha ingresado un valor inválido. Intente nuevamente." << endl;
+            cout << "Se ha ingresado un valor invalido. Intente nuevamente." << endl;
             cin.clear(); // Restablecer el estado del objeto cin
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
         }
     }
         Datos[1].Saldo = stof(Saldo) + Datos[1].Saldo;
-        cout<<"\tMONTO ACTUALIZADO\n"<<endl;
+        cout<<endl<<"\tMONTO ACTUALIZADO\n"<<endl;
 		cout<<"su nuevo Saldo es: "<<Datos[1].Saldo<<endl<<endl; 
 		system("pause"); system("cls");    
 	}
@@ -224,31 +245,41 @@ void Retiro(dt Datos[5]) // Permite realizar un retiro de la cuenta de un client
             }
             if (esNumero) {
                 //!Convertir la cadena a un número 
-                Saldo = stof(Saldo);
                 valorInvalido = false;
             }
             else {
-                cout << "Se ha ingresado un valor inválido. Intente nuevamente." << endl;
+                cout << "Se ha ingresado un valor invalido. Intente nuevamente." << endl;
                 cin.clear(); // Restablecer el estado del objeto cin
                 cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
             }
-    }
+            }
             float saldoRetiro = stof(Saldo);
-            if (saldoRetiro <= Datos[1].Saldo) {
-            cout << "Retiro: " << saldoRetiro << endl;
-            Datos[1].Saldo -= saldoRetiro;
-            cout << "Su nuevo Saldo es de: " << Datos[1].Saldo << endl << endl;
-            system("pause");
-            system("cls");
-    }
-            else {
-            cout << "La cantidad ingresada excede la cantidad disponible." << endl;
-}
-            
+            if (saldoRetiro <= Datos[1].Saldo) 
+            {
+                float vacia;
+                cout << "Retiro: " << saldoRetiro << endl;
+                vacia = Datos[1].Saldo -= saldoRetiro;
+                if (vacia==0)
+                {
+                    cout<<"Su nuevo Saldo es 0"<<endl;
+                    system("pause"); system("cls");
+                }
+                else
+                {
+                    cout << "Su nuevo Saldo es de: " << Datos[1].Saldo << endl << endl;
+                    system("pause");
+                    system("cls");
+                }
+            }
+            else 
+            {
+                cout << "La cantidad ingresada excede la cantidad disponible." << endl;
+                system("pause"); system("cls");
+            }   
         }
         else
         {
-            cout<<"Su Saldo es de: "<<Datos[1].Saldo<<endl; 
+            cout<<"No cuenta con fondos en su cuenta \n Su Saldo es de: "<<Datos[1].Saldo<<endl; 
 			system("pause"); system("cls");
         }
     }
