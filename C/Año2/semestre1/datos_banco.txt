@@ -1,15 +1,2 @@
-               SISTEMA CLAVE 
-               BANCO  UNIDOS 
--------------------------------------------
--Nombre:                    rs
--Cedula:                    333
--Numero de cuenta:          6591
-
-
-                 NUEVO SALDO
-DIS  :     -1
-TOTAL:     -1
-
-
-AUTORIZACION                         000001
--------------------------------------------
+raul 6-723-584 4091 555
+carlos 9-2333-3333 4206 3434.33
