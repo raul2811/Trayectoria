@@ -1,2 +1,3 @@
 # Programas
-Programas realisados en jupyter y c.
+Ejecicios para practicar habilidades en diferentes lenguajes de programacion.
+
