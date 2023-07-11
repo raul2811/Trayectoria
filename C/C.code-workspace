@@ -12,7 +12,9 @@
 			"*.tcc": "c",
 			"iosfwd": "c",
 			"string": "c",
-			"stdlib.h": "c"
+			"stdlib.h": "c",
+			"typeinfo": "c",
+			"vector": "c"
 		},
 		"workbench.colorCustomizations": {
 			"activityBar.activeBackground": "#931c9a",

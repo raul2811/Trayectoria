@@ -1,0 +1,19 @@
+Charmander 150 Colmillo-Ígneo  65 Puño-Fuego 75 Garra-Dragon 80
+Squirtle 150 Burbuja 10 Pistola-Agua 40 Rayo-Hielo 30
+Chikorita 150 Hoja-Afilada 20 Latigo-Cepa 30 Rayo-Solar 40
+Cyndaquil 150 Lanzallamas 40 Giro-Fuego 30 Cola-Llama 20
+Totodile 150 Mordisco 30 Chorro-de-Agua 40 Cascada 30
+Turtwig 150 Latigo-Cepa 20 Hoja-Afilada 30 Energibola 40
+Chimchar 150 Arañazo 30 Lanzallamas 40 Puño-Trueno 20
+Piplup 150 Burbuja 20 Rayo-Hielo 30 Surf 40
+Pikachu 150 Impactrueno 40 Bola-Voltio 30 Rayo 50
+Charizard 150 Lanzallamas 40 Garra-Dragon 30 Tajo-Aereo 50
+Onix 150 Roca-Afilada 30 Terremoto 40 Cola-Ferroz 20
+Mewtwo 150 Psíquico 50 Rayo-Hielo 40 Onda-Certera 30
+Eevee 150 Ataque-Rápido 30 Mordisco 20 Rayo-Aurora 40
+Gengar 150 Lengüetazo 20 Bola-Sombra 40 Pesadilla 30
+Mew 150 Psíquico 50 Onda-Certera 40 Rayo-Hielo 30
+Snorlax 150 Golpe-Cuerpo 30 Hiperrayo 40 Terremoto 50
+Lapras 150 Pistola-Agua 30 Ventisca 40 Rayo-Hielo 50
+Gyarados 150 Cascada 40 Hidrobomba 30 Hiperrayo 50
+
