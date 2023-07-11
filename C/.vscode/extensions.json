@@ -1,0 +1,19 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "eliverlara.andromeda",
+        "alefragnani.bookmarks",
+        "ms-vscode.cpptools-extension-pack",
+        "twxs.cmake",
+        "adpyke.codesnap",
+        "oderwat.indent-rainbow",
+        "ms-vsliveshare.vsliveshare",
+        "lostintangent.vsls-whiteboard",
+        "pkief.material-icon-theme",
+        "johnpapa.vscode-peacock",
+        "esbenp.prettier-vscode",
+        "thebearingedge.vscode-sql-lit",
+        "yy0931.vscode-sqlite3-editor",
+        "angelmaneuver.wallpaper-setting"
+    ]
+}
