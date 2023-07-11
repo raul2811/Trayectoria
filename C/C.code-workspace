@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.cpp": "c",
+			"ostream": "c",
+			"fstream": "c",
+			"*.tcc": "c",
+			"iosfwd": "c",
+			"string": "c"
+		},
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#931c9a",
+			"activityBar.background": "#931c9a",
+			"activityBar.foreground": "#e7e7e7",
+			"activityBar.inactiveForeground": "#e7e7e799",
+			"activityBarBadge.background": "#1b1a05",
+			"activityBarBadge.foreground": "#e7e7e7",
+			"commandCenter.border": "#e7e7e799",
+			"sash.hoverBorder": "#931c9a",
+			"statusBar.background": "#6a146f",
+			"statusBar.foreground": "#e7e7e7",
+			"statusBarItem.hoverBackground": "#931c9a",
+			"statusBarItem.remoteBackground": "#6a146f",
+			"statusBarItem.remoteForeground": "#e7e7e7",
+			"titleBar.activeBackground": "#6a146f",
+			"titleBar.activeForeground": "#e7e7e7",
+			"titleBar.inactiveBackground": "#6a146f99",
+			"titleBar.inactiveForeground": "#e7e7e799"
+		},
+		"peacock.color": "#6A146F"
+	}
+}

@@ -198,7 +198,6 @@ void Retiro(dt Datos[20]) // Permite realizar un retiro de la cuenta de un clien
             system("cls");
     }
             else {
-            
             cout << "La cantidad ingresada excede la cantidad disponible." << endl;
             system("pause");
             system("cls");
