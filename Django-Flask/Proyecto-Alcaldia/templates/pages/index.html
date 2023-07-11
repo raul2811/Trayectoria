@@ -1,0 +1,13 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+  {% if rank == "user" %}
+    {% include 'pages/usuario.html' %}
+  {% elif rank == "admin" %}
+    {% include 'pages/admin.html' %}
+    <!-- Contenido para el administrador -->
+  {% else %}
+    <h1>Bienvenido</h1>
+    <!-- Contenido predeterminado -->
+  {% endif %}
+{% endblock %}

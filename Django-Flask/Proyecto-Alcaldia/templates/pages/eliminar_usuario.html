@@ -1,0 +1,55 @@
+<form method="post" action="/eliminar_usuario">
+  <table>
+    <thead>
+      <tr>
+        <th>Seleccionar</th>
+        <th>Nombre de usuario</th>
+        <th>Rango</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuario in usuarios %}
+        <tr>
+          <td><input type="checkbox" name="usuarios_eliminar" value="{{ usuario.username }}"></td>
+          <td>{{ usuario.username }}</td>
+          <td>{{ usuario.rank }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>Confirma la eliminación: <input type="checkbox" name="confirmacion" value="confirmado"></p>
+  <button type="submit">Eliminar usuarios seleccionados</button>
+</form>
+<!--  
+  {% extends 'pages/base.html' %}
+
+{% block content %}
+  <h1>Eliminar Usuarios</h1>
+  {% if mensaje %}
+    <p>{{ mensaje }}</p>
+  {% endif %}
+  <form action="/eliminar_usuario" method="POST">
+    <table>
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios %}
+          <tr>
+            <td>{{ usuario }}</td>
+            {% if usuario != 'admin' %}
+              <td><input type="checkbox" name="usuarios_eliminar[]" value="{{ usuario }}"></td>
+            {% else %}
+              <td><input type="checkbox" name="usuarios_eliminar[]" value="{{ usuario }}" disabled></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <input type="submit" value="Eliminar Usuarios">
+  </form>
+{% endblock %}
+-->

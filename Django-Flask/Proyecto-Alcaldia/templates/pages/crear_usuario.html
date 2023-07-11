@@ -1,0 +1,25 @@
+{% extends 'pages/base.html' %}
+  {% block content %}
+  <h1>Crear Usuario</h1>
+  
+  {% if error_message %}
+    <p>{{ error_message }}</p>
+  {% endif %}
+  
+  {% if success_message %}
+    <p>{{ success_message }}</p>
+  {% endif %}
+  
+  <form action="/crear_usuario" method="POST">
+    <label for="username">Nombre de usuario:</label>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <label for="rank">Rango:</label>
+    <select id="rank" name="rank" required>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+    </select><br><br>
+    <input type="submit" value="Crear Usuario">
+</form>
+{% endblock %}
