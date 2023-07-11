@@ -11,7 +11,8 @@
 			"fstream": "c",
 			"*.tcc": "c",
 			"iosfwd": "c",
-			"string": "c"
+			"string": "c",
+			"stdlib.h": "c"
 		},
 		"workbench.colorCustomizations": {
 			"activityBar.activeBackground": "#931c9a",
