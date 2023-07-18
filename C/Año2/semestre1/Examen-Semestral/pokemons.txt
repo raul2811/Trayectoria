@@ -16,4 +16,4 @@ Mew 150 Psíquico 50 Onda-Certera 40 Rayo-Hielo 30
 Snorlax 150 Golpe-Cuerpo 30 Hiperrayo 40 Terremoto 50
 Lapras 150 Pistola-Agua 30 Ventisca 40 Rayo-Hielo 50
 Gyarados 150 Cascada 40 Hidrobomba 30 Hiperrayo 50
-
+Dialga 200 Dragoaliento 60 joya-de-luz 80 Esfera-aural 80
