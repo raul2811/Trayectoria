@@ -13,7 +13,7 @@ en cuadros de diálogo.
 */
 import java.util.InputMismatchException;
 /*
-es una excepción que se lanza cuando se produce un error en la 
+es una excepción que se lanza cuando se produce un er ror en la 
 lectura de datos utilizando un Scanner. 
 En tu programa, se utiliza para capturar 
 excepciones cuando el usuario ingresa datos incorrectos.
@@ -89,7 +89,6 @@ public class Edad {//Recordar siempre iniciar la clase principal con el mismo no
             try {
                 System.out.print("Ingrese su nombre: ");
                 nombre = scanner.nextLine();
-    
                 // Verificamos si el nombre contiene números
                 if (containsNumbers(nombre)) {
                     System.out.println("El nombre no puede contener números. Intente nuevamente.");
