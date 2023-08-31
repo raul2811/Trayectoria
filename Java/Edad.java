@@ -19,7 +19,7 @@ En tu programa, se utiliza para capturar
 excepciones cuando el usuario ingresa datos incorrectos.
 */
 
-public class Edad1 {//Recordar siempre iniciar la clase principal con el mismo nombre con el cual se guarda el archivo.
+public class Edad {//Recordar siempre iniciar la clase principal con el mismo nombre con el cual se guarda el archivo.
     
     // Declaración de variables estáticas
     static String nombre, mensajeedad;
