@@ -8,8 +8,12 @@ import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 public class clase3 {
-    
+
+    static float gasolina_galones, gasolina_litros;
+    static String name;
+
     public static void main(String[] args) {
+        
         
         int opc = 0;
     
@@ -44,10 +48,9 @@ public class clase3 {
     
     // Función para ingresar y mostrar los datos de repostaje
     private static void Repostar() {
-        float gasolina_galones;
-        String name = JOptionPane.showInputDialog("Ingrese La marca del vehiculo:");
+        name = JOptionPane.showInputDialog("Ingrese La marca del vehiculo:");
         JOptionPane.showMessageDialog(null, "La marca del vehiculo es: " + name);
-        float gasolina_litros = Float.parseFloat(JOptionPane.showInputDialog("Ingrese La cantidad de litros de combustible que desea repostar"));
+        gasolina_litros = Float.parseFloat(JOptionPane.showInputDialog("Ingrese La cantidad de litros de combustible que desea repostar"));
         
         gasolina_galones = (float) (gasolina_litros / 3.785);
         
@@ -61,7 +64,17 @@ public class clase3 {
         JOptionPane.showMessageDialog(null, "La Cantidad de Combustible que va a repostar es de: " + "\n" + gasolina_litros + " (L)" + "\n" + gasolina_galones_formateado + " (GAL)");
     }
     private static void Calcular_Datos() {
-        gasolina_galones;
+        float distancia=gasolina_litros*6;
+
+        if (distancia >=25 && distancia<=49 ) {
+            JOptionPane.showMessageDialog(null,"Usted podra recorrer hasta Arraijan Cabecera"+"\nKilometros que puede recorrer el vehiculo: "+distancia+" Km");
+        }
+        else if (distancia ==50) {
+            JOptionPane.showMessageDialog(null,"Usted podra recorrer hasta Chorrera"+"\nKilometros que puede recorrer el vehiculo: "+distancia+" Km");
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Usted podra recorrer hasta El interior del pais"+"\nKilometros que puede recorrer el vehiculo: "+distancia+" Km");
+        }
     }
 
 }
