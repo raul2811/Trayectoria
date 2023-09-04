@@ -13,10 +13,9 @@ public class clase3 {
     static String name;
 
     public static void main(String[] args) {
-        
-        
+
         int opc = 0;
-    
+
         // Bucle do-while para mostrar el menú y procesar opciones hasta que el usuario decida salir
         do {
             opc = Menu(opc); // Llama a la función Menu y guarda la opción elegida
@@ -36,45 +35,48 @@ public class clase3 {
                     break;
             }
         } while (opc != 3); // La condición de salida del bucle
-    
+
     }
-    
-    
+
     // Función para mostrar el menú y obtener la opción elegida por el usuario
     private static int Menu(int opc) {
         opc = Integer.parseInt(JOptionPane.showInputDialog(null, "MENU\n#1 Ingrese los datos\n#2 Calcular los datos\n#3 Salir"));
         return opc;
     }
-    
+
     // Función para ingresar y mostrar los datos de repostaje
     private static void Repostar() {
+        // Solicita la marca del vehículo y muestra el valor ingresado
         name = JOptionPane.showInputDialog("Ingrese La marca del vehiculo:");
         JOptionPane.showMessageDialog(null, "La marca del vehiculo es: " + name);
+
+        // Solicita la cantidad de litros de combustible y muestra el valor ingresado
         gasolina_litros = Float.parseFloat(JOptionPane.showInputDialog("Ingrese La cantidad de litros de combustible que desea repostar"));
-        
+
+        // Calcula la cantidad de galones equivalentes y formatea el resultado
         gasolina_galones = (float) (gasolina_litros / 3.785);
-        
         int cantidadDecimales = 2; // Número de decimales deseado
-        
-        // Formateo de gasolina_galones con la cantidad de decimales deseada
         DecimalFormat df = new DecimalFormat("#." + "0".repeat(cantidadDecimales));
         String gasolina_galones_formateado = df.format(gasolina_galones);
-        
-        // Mostrar los datos ingresados y calculados
+
+        // Muestra los datos ingresados y calculados
         JOptionPane.showMessageDialog(null, "La Cantidad de Combustible que va a repostar es de: " + "\n" + gasolina_litros + " (L)" + "\n" + gasolina_galones_formateado + " (GAL)");
     }
-    private static void Calcular_Datos() {
-        float distancia=gasolina_litros*6;
 
-        if (distancia >=25 && distancia<=49 ) {
-            JOptionPane.showMessageDialog(null,"Usted podra recorrer hasta Arraijan Cabecera"+"\nKilometros que puede recorrer el vehiculo: "+distancia+" Km");
-        }
-        else if (distancia ==50) {
-            JOptionPane.showMessageDialog(null,"Usted podra recorrer hasta Chorrera"+"\nKilometros que puede recorrer el vehiculo: "+distancia+" Km");
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Usted podra recorrer hasta El interior del pais"+"\nKilometros que puede recorrer el vehiculo: "+distancia+" Km");
+    private static void Calcular_Datos() {
+        // Calcula la distancia estimada que se puede recorrer en base a los litros de combustible
+        float distancia = gasolina_litros * 6;
+
+        if (distancia >= 25 && distancia <= 49) {
+            // Muestra un mensaje indicando la ubicación y la distancia estimada
+            JOptionPane.showMessageDialog(null, "Usted podrá recorrer hasta Arraiján Cabecera" + "\nKilometros que puede recorrer el vehiculo: " + distancia + " Km");
+        } else if (distancia == 50) {
+            // Muestra un mensaje indicando la ubicación y la distancia estimada
+            JOptionPane.showMessageDialog(null, "Usted podrá recorrer hasta Chorrera" + "\nKilometros que puede recorrer el vehiculo: " + distancia + " Km");
+        } else {
+            // Muestra un mensaje indicando la ubicación y la distancia estimada
+            JOptionPane.showMessageDialog(null, "Usted podrá recorrer hasta El interior del país" + "\nKilometros que puede recorrer el vehiculo: " + distancia + " Km");
         }
     }
-
 }
+
