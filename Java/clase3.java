@@ -52,7 +52,7 @@ public class clase3 {
 
         // Solicita la cantidad de litros de combustible y muestra el valor ingresado
         gasolina_litros = Float.parseFloat(JOptionPane.showInputDialog("Ingrese La cantidad de litros de combustible que desea repostar"));
-
+ 
         // Calcula la cantidad de galones equivalentes y formatea el resultado
         gasolina_galones = (float) (gasolina_litros / 3.785);
         int cantidadDecimales = 2; // Número de decimales deseado
