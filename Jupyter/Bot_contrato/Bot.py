@@ -50,6 +50,11 @@ def start(update: Update, context: CallbackContext):
         reply_text = "El bot ya se ha detenido. Para volver a iniciarlo, usa /start."
     update.message.reply_text(reply_text)
 
+    if bot_en_funcionamiento:
+        context.bot.send_message(chat_id=update.message.chat_id, text="El bot se ha iniciado y está operativo.")
+    else:
+        context.bot.send_message(chat_id=update.message.chat_id, text="El bot ya se ha detenido. Para volver a iniciarlo, usa /start.")
+
     # Solicita al usuario que elija el género
     reply_text = "Hola, soy tu bot de contrato. Por favor, elige el género: (1) Hombre, (2) Mujer"
     update.message.reply_text(reply_text)
@@ -60,7 +65,9 @@ def stop(update: Update, context: CallbackContext):
     global bot_en_funcionamiento
     bot_en_funcionamiento = False
     update.message.reply_text("El bot se ha detenido. Para volver a iniciarlo, usa /start.")
-
+    
+    # Envía un mensaje de apagado del bot
+    context.bot.send_message(chat_id=update.message.chat_id, text="El bot se ha apagado.")
 # Función para manejar la elección de género
 def choose_gender(update, context):
     global bot_en_funcionamiento
@@ -87,9 +94,7 @@ def choose_gender(update, context):
     except ValueError:
         update.message.reply_text("Por favor, ingresa un número válido: (1) Hombre, (2) Mujer.")
         return GENDER
-    except ValueError:
-        update.message.reply_text("Por favor, ingresa un número válido: (1) Hombre, (2) Mujer.")
-        return GENDER
+
 
     reply_text = f"Perfecto, Ahora, por favor ingresa el nombre:"
     update.message.reply_text(reply_text)
@@ -108,6 +113,7 @@ def get_cedula(update, context):
     cedula_input = update.message.text
     cedula_en_letras = convertir_cedula_a_letras(cedula_input)  # Conserva los guiones
     context.user_data['cedula'] = cedula_en_letras
+    context.user_data['cedulanumero']=cedula_input
 
     reply_text = "Ingresa la fecha en que se realizará la sesión (por ejemplo, sábado 9 de septiembre de 2023):"
     update.message.reply_text(reply_text)
@@ -139,42 +145,47 @@ def get_sign_date(update, context):
     context.user_data['sign_date'] = update.message.text
     reply_text = "¡Gracias! Procesando la información y generando el contrato..."
 
-    # Diccionario con las variables a reemplazar
-    variables_a_reemplazar = {
-        "NOMBREM": context.user_data['name'],
-        "CEDULAM": context.user_data['cedula'],
-        "DIAS": context.user_data['date'],
-        "HORAI": context.user_data['start_time'],
-        "HORAF": context.user_data['end_time'],
-        "DIAF": context.user_data['sign_date'],
-        "NUMEROCEDULA": CEDULA,
-        "señora": context.user_data['seno'],
-        "mujer": context.user_data['gen'],
-        "panameña": context.user_data['pana']
-    }
+    try:
+        # Diccionario con las variables a reemplazar
+        variables_a_reemplazar = {
+            "NOMBREM": context.user_data['name'],
+            "CEDULAM": context.user_data['cedula'],
+            "DIAS": context.user_data['date'],
+            "HORAI": context.user_data['start_time'],
+            "HORAF": context.user_data['end_time'],
+            "DIAF": context.user_data['sign_date'],
+            "NUMEROCEDULA": context.user_data['cedulanumero'],
+            "señora": context.user_data['seno'],
+            "mujer": context.user_data['gen'],
+            "panameña": context.user_data['pana']
+        }
 
-     # Recorre el contenido del documento
-    for paragraph in documento.paragraphs:
-        for variable, valor in variables_a_reemplazar.items():
-            if variable in paragraph.text:
-                nuevo_texto = paragraph.text.replace(variable, valor)
-                paragraph.clear()  # Borra el párrafo actual
-                paragraph.add_run(nuevo_texto)  # Agrega el nuevo texto al párrafo
+        # Recorre el contenido del documento
+        for paragraph in documento.paragraphs:
+            for variable, valor in variables_a_reemplazar.items():
+                if variable in paragraph.text:
+                    nuevo_texto = paragraph.text.replace(variable, valor)
+                    paragraph.clear()  # Borra el párrafo actual
+                    paragraph.add_run(nuevo_texto)  # Agrega el nuevo texto al párrafo
 
-    # Guarda el documento con los cambios
-    docx_filename = f"Contrato para {context.user_data['name']}.docx"
-    documento.save(docx_filename)
+        # Guarda el documento con los cambios
+        docx_filename = f"Contrato para {context.user_data['name']}.docx"
+        documento.save(docx_filename)
 
-    # Convierte el documento Word a PDF
-    pdf_filename = docx_filename.replace(".docx", ".pdf")
-    docx2pdf.convert(docx_filename, pdf_filename)
+        # Convierte el documento Word a PDF
+        pdf_filename = docx_filename.replace(".docx", ".pdf")
+        docx2pdf.convert(docx_filename, pdf_filename)
 
-    # Envía el PDF al usuario
-    context.bot.send_document(chat_id=update.message.chat_id, document=open(pdf_filename, 'rb'))
+        # Envía el PDF al usuario
+        context.bot.send_document(chat_id=update.message.chat_id, document=open(pdf_filename, 'rb'))
 
-    update.message.reply_text("¡Listo! El contrato ha sido generado en PDF y enviado. ¡Que tengas un buen día!")
+        update.message.reply_text("¡Listo! El contrato ha sido generado en PDF y enviado. ¡Que tengas un buen día!")
 
-    return ConversationHandler.END
+        return ConversationHandler.END
+    except Exception as e:
+        update.message.reply_text("Ocurrió un error al generar el contrato. Por favor, intenta nuevamente más tarde o verifica los datos ingresados.")
+        print(f"Error en la generación del contrato: {str(e)}")
+        return ConversationHandler.END
 def ayuda(update, context):
     mensaje_ayuda = """
     ¡Hola! Soy tu bot de contrato. Aquí están los comandos disponibles:
