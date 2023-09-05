@@ -62,10 +62,12 @@ public class clase4 {
          
     }
 
-    private static void Imprimir(double costo_bruto,double impuesto,double total) {
-        JOptionPane.showMessageDialog(null, "Su factura es: " + "\n" + costo_bruto + "\n" + impuesto + "\n" + total);
+    private static void Imprimir(double costo_bruto, double impuesto, double total) {
+        JOptionPane.showMessageDialog(null, "Detalle de la factura:\n" +
+                "Costo bruto: $" + costo_bruto + "\n" +
+                "Impuesto (7%): $" + impuesto + "\n" +
+                "Total a pagar: $" + total);
     }
-
 
 }
 
