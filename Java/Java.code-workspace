@@ -25,6 +25,17 @@
 			"titleBar.inactiveForeground": "#e7e7e799"
 		},
 		"peacock.color": "#4287f5",
-		"java.debug.settings.onBuildFailureProceed": true
+		"java.debug.settings.onBuildFailureProceed": true,
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.base.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.controls.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.fxml.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.graphics.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.media.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.swing.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.web.jar",
+			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx-swt.jar"
+		]
 	}
 }

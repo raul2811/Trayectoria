@@ -1,0 +1,99 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "simulator_banco",
+            "request": "launch",
+            "mainClass": "simulator_banco",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "hola_mundo_javafx.Main",
+            "projectName": "hola_mundo"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Edad",
+            "request": "launch",
+            "mainClass": "Edad",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "Edad2",
+            "request": "launch",
+            "mainClass": "Edad2",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "EdadModoGrafico",
+            "request": "launch",
+            "mainClass": "EdadModoGrafico",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "Simple",
+            "request": "launch",
+            "mainClass": "Simple",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "clase3",
+            "request": "launch",
+            "mainClass": "clase3",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "clase4",
+            "request": "launch",
+            "mainClass": "clase4",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "clase5",
+            "request": "launch",
+            "mainClass": "clase5",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "clase6",
+            "request": "launch",
+            "mainClass": "clase6",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "guardararchivo",
+            "request": "launch",
+            "mainClass": "guardararchivo",
+            "projectName": "Java_778974db"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "vmArgs": "--module-path C:/Users/rauls/AppData/Local/Programs/Eclipse Adoptium/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "hola_mundo.src.main.java.hola_mundo_javafx.Main",
+            "projectName": "Java_778974db"
+        }
+    ]
+}
