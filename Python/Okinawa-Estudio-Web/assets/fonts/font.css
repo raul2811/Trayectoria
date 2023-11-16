@@ -1,0 +1,48 @@
+@font-face {
+    font-family: my-font;
+    src: url("Artis-Swing-Bold.otf") format("opentype");
+}
+@font-face {
+    font-family: my-font2;
+    src: url("Artis-Sans-Bold.otf") format("opentype");
+}
+@font-face {
+    font-family: my-font3;
+    src: url("Artis-Sans-Demibold.otf") format("opentype");
+}
+@font-face {
+    font-family: my-font4;
+    src: url("Artis-Sans-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: facebook;
+    src: url("klavika-bold.otf") format("opentype");
+}
+
+.content_1{
+    filter: drop-shadow(0 0 0.75rem black);
+}
+.logo {
+    animation: fadeIn 1s ease-in-out forwards, fadeOpacity 2s ease-in-out; /* Aplicar ambas animaciones */
+  }
+  
+  @keyframes fadeIn {
+    0% {
+        transform: translateY(20px);
+        filter: blur(8px);
+    }
+    100% {
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

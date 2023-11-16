@@ -25,7 +25,11 @@
 			"titleBar.inactiveForeground": "#e7e7e799"
 		},
 		"peacock.color": "#4287f5",
+<<<<<<< HEAD
 		"java.debug.settings.onBuildFailureProceed": true,
+<<<<<<< HEAD
+		"git.ignoreLimitWarning": true
+=======
 		"java.project.referencedLibraries": [
 			"lib/**/*.jar",
 			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.base.jar",
@@ -37,5 +41,9 @@
 			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.web.jar",
 			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx-swt.jar"
 		]
+>>>>>>> a571db1aaca1bdb6849bf79258f1e916c792cfef
+=======
+		"java.debug.settings.onBuildFailureProceed": true
+>>>>>>> parent of a571db1 (ejercicios)
 	}
 }

@@ -1,0 +1,6 @@
+# Copyright Microsoft Corporation. All rights reserved.
+
+MESSAGE = """'onedrivesdk' has been deprecated.
+Visit https://pypi.org/project/onedrivesdk for migration information."""
+
+raise ImportError(MESSAGE)

@@ -1,0 +1,25 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+  <h1>Editar Usuario</h1>
+  <form method="POST">
+    <div class="form-group">
+      <label for="username">Nombre de usuario:</label>
+      <input type="text" id="username" name="username" value="{{ user_info.username }}" class="form-control" readonly>
+    </div>
+    {% if is_admin_user(username) %}
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" class="form-control">
+      </div>
+    {% else %}
+      <div class="form-group">
+        <label for="rank">Nivel de acceso:</label>
+        <select id="rank" name="rank" class="form-control">
+          <option value="admin" {% if user_info.rank == 'admin' %}selected{% endif %}>Administrador</option>
+          <option value="user" {% if user_info.rank == 'user' %}selected{% endif %}>Usuario</option>
+        </select>
+      </div>
+    {% endif %}
+    <input type="submit" name="editar_usuario" value="Guardar cambios" class="btn btn-primary">
+  </form>
+{% endblock %}

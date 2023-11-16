@@ -1,0 +1,32 @@
+/* Estilos para el footer */
+.ave-justo-arosemena {
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    font-family: "Inria Sans";
+    font-size: 25px;
+    margin: 0;
+  }
+  .ave-justo-arosemena-container,
+  .municipio-de-panam-container {
+    position: absolute;
+    top: 950px;
+    left: 76px;
+    color: #ffffff;
+    display: inline-block;
+    width: 690px;
+    height: 114px;
+  }
+  .municipio-de-panam-container {
+    left: 1205px;
+  }
+
+  .login-1-child1 {
+    position: absolute;
+    top: 927px;
+    left: 0;
+    background-color: #011250;
+    width: 1920px;
+    height: 153px;
+  }
+  

@@ -1,0 +1,49 @@
+/* Estilos para la paginación */
+.pagination {
+    margin-top: 20px;
+  }
+
+  .archivo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.archivo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.archivo-info h3 {
+    margin: 0;
+}
+
+.archivo-info p {
+    margin: 5px 0;
+}
+.archivo {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.archivo.fade-in {
+    opacity: 1;
+}
+
+/* Agregar animación al icono del archivo */
+.archivo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

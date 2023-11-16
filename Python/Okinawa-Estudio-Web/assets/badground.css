@@ -1,0 +1,29 @@
+.badground_slider{
+    padding-top:10%;
+	background:url(fondo.webp);
+	background-position:center;
+	background-size: cover;
+	background-repeat:no-repeat;
+	height:100vh;
+    animation: slide 20s infinite;
+}
+@keyframes slide{
+    25%{background:url(fondo.webp);
+        padding-top:10%;
+        background-position:center;
+        background-size: cover;
+        background-repeat:no-repeat;
+        height:100vh;}
+    50%{background:url(fondo2.webp);padding-top:10%;
+        background-position:center;
+        background-size: cover;
+        background-repeat:no-repeat;
+        height:100vh;}
+    75%{background:url(fondo.webp);
+        padding-top:10%;
+        background-position:center;
+        background-size: cover;
+        background-repeat:no-repeat;
+        height:100vh;}
+    100%{background:url(fondo2.webp);}
+}

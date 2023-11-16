@@ -1,0 +1,12 @@
+This package has been deprecated and should no longer be used.
+
+To continue using the old version of this package, please install
+``onedrivesdk < 2``.
+
+Visit `docs.microsoft.com/graph/onedrive-concept-overview <https://docs.microsoft.com/graph/onedrive-concept-overview>`_ for
+information about using the new Microsoft Graph APIs to access and manage
+OneDrive accounts.
+
+You can find other packages published by Microsoft at
+`pypi.org/user/microsoft <https://pypi.org/user/microsoft/>`_
+
