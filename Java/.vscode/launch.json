@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Banco",
+            "request": "launch",
+            "mainClass": "Banco",
+            "projectName": "Java_e62edeca"
+        },
+        {
+            "type": "java",
+            "name": "simulator_banco",
+            "request": "launch",
+            "mainClass": "simulator_banco",
+            "projectName": "Java_e62edeca"
+        },
+        {
+            "type": "java",
             "name": "InterfCodigo",
             "request": "launch",
             "mainClass": "InterfCodigo",
