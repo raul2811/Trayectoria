@@ -21,3 +21,4 @@ public class base_de_datos {
 
     // Agregar otros métodos para realizar consultas, cerrar la conexión, etc.
 }
+    
