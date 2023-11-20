@@ -43,7 +43,7 @@ public class App extends Application {
             String username = usernameField.getText();
             String password = passwordField.getText();
 
-            if (db.conectar("jdbc:postgresql://localhost:5432/Banco", username, password)) {
+            if (db.conectar("jdbc:postgres://qnkqtlwp:WzeaecAaHo5dSgTPgMTotp_mikvPSm2_@bubble.db.elephantsql.com/qnkqtlwp", username, password)) {
                 mostrarAlerta("Conexión Exitosa", "Se ha conectado a la base de datos correctamente", AlertType.INFORMATION);
                 // Realizar acciones adicionales después de una conexión exitosa
             } else {
