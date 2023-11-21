@@ -1,8 +1,9 @@
 module test {
-    requires javafx.controls; // Requiere el módulo de JavaFX para controles de interfaz gráfica
+    requires javafx.controls; // Requiere el módulo de JavaFX para los controles de interfaz de usuario
+    requires transitive javafx.graphics; // Requiere el módulo de JavaFX para gráficos
     requires javafx.fxml; // Requiere el módulo de JavaFX para archivos FXML
-    requires java.sql; // Requiere el módulo para operaciones JDBC
+    requires transitive java.sql; // Requiere el módulo de Java para operaciones JDBC
 
-    opens test to javafx.fxml; // Permite el acceso desde el archivo FXML al paquete test
-    exports test; // Hace que el paquete test sea visible para otros módulos
+    opens test to javafx.fxml; // Permite el acceso desde archivos FXML al paquete 'test'
+    exports test; // Hace visible el paquete 'test' para otros módulos
 }
