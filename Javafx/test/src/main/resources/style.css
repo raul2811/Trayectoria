@@ -38,6 +38,7 @@
 .white-field {
     -fx-background-color: white;
     -fx-text-fill: black;
+    
 }
 
 .white-label {
@@ -65,13 +66,51 @@
     -fx-text-fill: white;
     -fx-cursor: hand;
 }
-    
 
 
 #infoGrid {
     -fx-background-color: white;
+    -fx-padding: 95; /* Ajusta el relleno según sea necesario */
+    -fx-margin: 100; /* Ajusta los márgenes según sea necesario */
 }
 
+#username {
+    -fx-background-image: url("usuario.png");
+    -fx-background-position: left center;  
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 25px 25px;
+    -fx-padding: 5px 5px 5px 30px; 
+}
 
+#username:focused::placeholder {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-style: italic;
+    -fx-font-size: 12px;
+    -fx-text-content: "Ingrese usuario";
+}
+
+#password {
+    -fx-background-image: url("candado.png");
+    -fx-background-position: left center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 25px 25px; 
+    -fx-padding: 5px 5px 5px 30px;
+}
+
+#password:focused::placeholder {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-style: italic; 
+    -fx-font-size: 12px;
+    -fx-text-content: "Ingrese contraseña";  
+}
+
+.datePicker {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+  }
+  
+
+
+  
 
 

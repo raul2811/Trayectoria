@@ -1,7 +1,7 @@
 package test;
 
 import java.util.Optional;
-
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,54 +18,89 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.scene.control.DatePicker;
+import java.time.LocalDate;
+
 
 public class App extends Application {
 
-    private base_de_datos db = new base_de_datos(); // Instancia de la clase BaseDeDatos
+    private base_de_datos db = new base_de_datos();
+    private GridPane registroGrid = new GridPane();
+    private VBox loginVBox;
+    private VBox registroVBox;
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Inicio de Sesión");
+        primaryStage.setTitle("Banco universitario");
 
-        // Crea un ImageView para tu logo
         Image logoImage = new Image("negativo-horizontal.png");
         ImageView logoView = new ImageView(logoImage);
-        logoView.setFitHeight(100); // Establece el alto de la imagen a 50
-        logoView.setFitWidth(200); // Establece el ancho de la imagen a 50
+        logoView.setFitHeight(100);
+        logoView.setFitWidth(200);
 
-        // Crear elementos de la interfaz de usuario
         Label usernameLabel = new Label("Usuario:");
-        usernameLabel.getStyleClass().add("white-label"); // Aplica la clase CSS
+        usernameLabel.getStyleClass().add("white-label");
+
         TextField usernameField = new TextField();
-        usernameField.getStyleClass().add("white-field"); // Aplica la clase CSS
+        usernameField.setPromptText("Ingrese su usuario");
+        usernameField.getStyleClass().add("white-field");
+        usernameField.setId("username");
 
         Label passwordLabel = new Label("Contraseña:");
-        passwordLabel.getStyleClass().add("white-label"); // Aplica la clase CSS
+        passwordLabel.getStyleClass().add("white-label");
+
         PasswordField passwordField = new PasswordField();
-        passwordField.getStyleClass().add("white-field"); // Aplica la clase CSS
+        passwordField.setPromptText("Ingrese su contraseña");
+        passwordField.getStyleClass().add("white-field");
+        passwordField.setId("password");
 
         Button loginButton = new Button("Iniciar Sesión");
-        loginButton.getStyleClass().add("transparent-button"); // Añade la clase CSS
+        loginButton.getStyleClass().add("transparent-button");
 
         Button registrarButton = new Button("Crear cuenta");
-        registrarButton.getStyleClass().add("crear-cuenta-button"); // Añade la clase CSS
+        registrarButton.getStyleClass().add("crear-cuenta-button");
 
-        HBox hbox = new HBox(10); // 10 es el espaciado horizontal entre los elementos
-        hbox.setAlignment(Pos.CENTER); // Alinea los elementos al centro horizontalmente
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER);
         hbox.getChildren().addAll(loginButton, registrarButton);
 
-        VBox vbox = new VBox(10); // 10 es el espaciado vertical entre los elementos
-        vbox.setAlignment(Pos.CENTER); // Alinea los elementos al centro verticalmente
-        vbox.getChildren().addAll(logoView, usernameLabel, usernameField, passwordLabel, passwordField, hbox);
+        loginVBox = new VBox(10);
+        loginVBox.setAlignment(Pos.CENTER);
+        loginVBox.getChildren().addAll(logoView, usernameLabel, usernameField, passwordLabel, passwordField, hbox);
 
-        Scene scene = new Scene(vbox, 600, 300); // Ajusta el tamaño según tus necesidades
-        scene.getStylesheets().add("style.css"); // Carga el archivo CSS
-        vbox.getStyleClass().add("root");
+        Scene scene = new Scene(loginVBox, 600, 300);
+        scene.getStylesheets().add("style.css");
+        loginVBox.getStyleClass().add("root");
+
+        Image appIcon = new Image("horizontal.png");
+        primaryStage.getIcons().add(appIcon);
+
+        // VBox para el formulario de registro
+        registroVBox = new VBox(10);
+        registroVBox.setAlignment(Pos.CENTER);
+        registroVBox.getChildren().addAll(registroGrid);
+        registroVBox.setVisible(false);
+
+        registrarButton.setOnAction(e -> {
+            loginVBox.setVisible(false);
+            registroVBox.setVisible(true);
+        });
+
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        registroGrid.setAlignment(Pos.CENTER);
+        registroGrid.setHgap(10);
+        registroGrid.setVgap(10);
+        registroGrid.setVisible(false); // Inicialmente oculto
+
+        loginVBox.getChildren().addAll(registroVBox);
 
         registrarButton.setOnAction(e -> {
             TextInputDialog dialog = new TextInputDialog();
@@ -137,9 +172,19 @@ public class App extends Application {
 
             Usuario usuario = db.login(username, password);
             if (usuario != null) {
-                mostrarInformacionUsuario(usuario);
-                primaryStage.hide();
+                loginVBox.getChildren().clear();
+
+                GridPane grid = crearGridUsuario(usuario);
+                loginVBox.getChildren().add(grid);
+
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(0.9), grid);
+                tt.setFromY(-scene.getHeight());
+                tt.setToY(0);
+                tt.play();
+
+                primaryStage.setScene(scene);
             } else {
+                // Si las credenciales son incorrectas, mostrar alerta de error
                 mostrarAlerta("Error de inicio de sesión", "Credenciales incorrectas", Alert.AlertType.ERROR);
             }
         });
@@ -151,52 +196,57 @@ public class App extends Application {
         passwordField.setPrefHeight(30);
     }
 
-    public void mostrarInformacionUsuario(Usuario usuario) {
-        Stage infoStage = new Stage();
-        infoStage.setTitle("Información del Usuario");
-    
-        GridPane infoGrid = new GridPane();
-        infoGrid.setPadding(new Insets(20, 20, 20, 20));
-        infoGrid.setVgap(10);
-        infoGrid.setHgap(10);
-        infoGrid.setId("infoGrid");  // Asigna un id a la GridPane
+    private GridPane crearGridUsuario(Usuario usuario) {
 
+        GridPane infoGrid = new GridPane();
+        infoGrid.setId("infoGrid");
+
+        DatePicker calendar = new DatePicker(LocalDate.now());
         
-    
-        // Añade la imagen en la esquina superior izquierda
+
         Image image = new Image("horizontal.png");
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(50); // ajusta el alto de la imagen
-        imageView.setFitWidth(50); // ajusta el ancho de la imagen
-        infoGrid.add(imageView, 0, 0); // añade la imagen a la esquina superior izquierda
-    
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        infoGrid.add(imageView, 0, 0);
+
+        /*StackPane gifContainer = new StackPane();
+        Image gifImage = new Image("atajos.gif");
+        ImageView gifImageView = new ImageView(gifImage);
+        gifImageView.setFitHeight(50);
+        gifImageView.setFitWidth(50);
+
+        Label textoLabel = new Label("Haz tus recargas en nuestro banco");
+        textoLabel.setFont(Font.font(20));
+
+        gifContainer.getChildren().addAll(gifImageView, textoLabel);
+
+        infoGrid.add(gifContainer, 0, 0);/* */
+
         Label nombreLabel = new Label("Nombre:");
         Label dineroLabel = new Label("Dinero:");
         Label nombreValor = new Label(usuario.getNombre() + " " + usuario.getApellido());
-        Label dineroValor = new Label(String.valueOf(usuario.getDinero()));
+        Label dineroValor = new Label(String.valueOf(usuario.getMontoCuenta()));
 
-
-    
         Button depositoButton = new Button("Depósito");
         Button retiroButton = new Button("Retiro");
-    
-        // Añade la clase CSS a los botones
+
         depositoButton.getStyleClass().add("mi-boton");
         retiroButton.getStyleClass().add("mi-boton");
-    
+
         depositoButton.setOnAction(e -> {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Depósito");
             dialog.setHeaderText(null);
             dialog.setContentText("Ingrese la cantidad a depositar:");
-    
+
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(cantidadStr -> {
                 double cantidad = Double.parseDouble(cantidadStr);
                 if (cantidad > 0) {
                     boolean depositoExitoso = db.realizarDeposito(usuario, cantidad);
                     if (depositoExitoso) {
-                        dineroValor.setText(String.valueOf(usuario.getDinero() + cantidad));
+                        dineroValor.setText(String.valueOf(usuario.getMontoCuenta() + cantidad));
                     } else {
                         mostrarAlerta("Error", "No se pudo realizar el depósito", Alert.AlertType.ERROR);
                     }
@@ -205,8 +255,6 @@ public class App extends Application {
                 }
             });
         });
-    
-    
 
         retiroButton.setOnAction(e -> {
             TextInputDialog dialog = new TextInputDialog();
@@ -217,10 +265,10 @@ public class App extends Application {
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(cantidadStr -> {
                 double cantidad = Double.parseDouble(cantidadStr);
-                if (cantidad > 0 && cantidad <= usuario.getDinero()) {
+                if (cantidad > 0 && cantidad <= usuario.getMontoCuenta()) {
                     boolean retiroExitoso = db.realizarRetiro(usuario, cantidad);
                     if (retiroExitoso) {
-                        dineroValor.setText(String.valueOf(usuario.getDinero() - cantidad));
+                        dineroValor.setText(String.valueOf(usuario.getMontoCuenta() - cantidad));
                     } else {
                         mostrarAlerta("Error", "No se pudo realizar el retiro", Alert.AlertType.ERROR);
                     }
@@ -231,7 +279,7 @@ public class App extends Application {
         });
 
         Button transferirButton = new Button("Transferir");
-        transferirButton.getStyleClass().add("mi-boton");  // Añade la clase CSS
+        transferirButton.getStyleClass().add("mi-boton");
         transferirButton.setOnAction(e -> {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Transferir");
@@ -271,11 +319,11 @@ public class App extends Application {
         infoGrid.add(dineroValor, 1, 2);
         infoGrid.add(depositoButton, 0, 3);
         infoGrid.add(retiroButton, 1, 3);
+        infoGrid.add(calendar, 0, 4);
 
-        Scene infoScene = new Scene(infoGrid, 400, 200);
-        infoScene.getStylesheets().add("style.css"); // Añade tu archivo CSS a la escena
-        infoStage.setScene(infoScene);
-        infoStage.show();
+        GridPane.setMargin(retiroButton, new Insets(10));
+
+        return infoGrid;
     }
 
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipoAlerta) {
@@ -283,26 +331,23 @@ public class App extends Application {
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
-    
-        // Agrega tu archivo CSS a la alerta
+
         alert.getDialogPane().getStylesheets().add("style.css");
-    
+
         ButtonType aceptarButtonType = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
         alert.getDialogPane().getButtonTypes().setAll(aceptarButtonType);
-    
+
         Button aceptarButton = (Button) alert.getDialogPane().lookupButton(aceptarButtonType);
         aceptarButton.getStyleClass().add("aceptar-button");
-    
+
         Button cancelarButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
         cancelarButton.getStyleClass().add("cancelar-button");
-    
+
         alert.showAndWait();
     }
-    
-    
-    
 
     public static void main(String[] args) {
         launch(args);
     }
 }
+
