@@ -1,5 +1,6 @@
 package test;
 
+import java.util.List;
 import java.util.Optional;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -10,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -24,6 +27,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Dialog;
+
 import java.time.LocalDate;
 
 
@@ -195,7 +200,24 @@ public class App extends Application {
         passwordField.setMaxWidth(150);
         passwordField.setPrefHeight(30);
     }
-
+    private double obtenerCantidadADepositar() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Depósito");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Ingrese la cantidad a depositar:");
+    
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            try {
+                return Double.parseDouble(result.get());
+            } catch (NumberFormatException e) {
+                // Handle invalid input (non-numeric or other invalid formats)
+                mostrarAlerta("Error", "Ingrese un número válido", Alert.AlertType.ERROR);
+            }
+        }
+        return 0; // Return 0 if no valid input is provided
+    }
+    
     private GridPane crearGridUsuario(Usuario usuario) {
 
         GridPane infoGrid = new GridPane();
@@ -235,49 +257,77 @@ public class App extends Application {
         retiroButton.getStyleClass().add("mi-boton");
 
         depositoButton.setOnAction(e -> {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Depósito");
-            dialog.setHeaderText(null);
-            dialog.setContentText("Ingrese la cantidad a depositar:");
+    // Crear un ComboBox para mostrar las cuentas del usuario
+    ComboBox<CuentaInfo> cuentasComboBox = new ComboBox<>();
+    cuentasComboBox.setPromptText("Seleccione una cuenta");
 
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(cantidadStr -> {
-                double cantidad = Double.parseDouble(cantidadStr);
-                if (cantidad > 0) {
-                    boolean depositoExitoso = db.realizarDeposito(usuario, cantidad);
-                    if (depositoExitoso) {
-                        dineroValor.setText(String.valueOf(usuario.getMontoCuenta() + cantidad));
-                    } else {
-                        mostrarAlerta("Error", "No se pudo realizar el depósito", Alert.AlertType.ERROR);
-                    }
+    // Obtener la lista de cuentas del usuario
+    List<CuentaInfo> cuentasUsuario = db.obtenerInfoCuentasUsuario(usuario.getId());
+
+    // Llenar el ComboBox con las cuentas del usuario
+    cuentasComboBox.getItems().addAll(cuentasUsuario);
+
+    // Crear un diálogo que contenga el ComboBox
+    Dialog<CuentaInfo> dialog = new Dialog<>();
+    dialog.setTitle("Seleccione la cuenta");
+    dialog.setHeaderText(null);
+    dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+    dialog.getDialogPane().setContent(cuentasComboBox);
+
+    // Mostrar el diálogo y esperar a que el usuario seleccione una cuenta o cancele
+    Optional<CuentaInfo> selectedAccount = dialog.showAndWait();
+    if (selectedAccount.isPresent()) {
+        CuentaInfo cuentaSeleccionada = selectedAccount.get();
+        double cantidad = obtenerCantidadADepositar(); // Esta función debe obtener la cantidad a depositar
+
+        if (cantidad > 0) {
+            // Realizar el depósito en la cuenta seleccionada
+            boolean depositoExitoso = db.realizarDeposito(cuentaSeleccionada.getId(), cantidad);
+            if (depositoExitoso) {
+                // Actualizar la interfaz con el nuevo saldo
+                dineroValor.setText(String.valueOf(usuario.getMontoCuenta() + cantidad));
+            } else {
+                mostrarAlerta("Error", "No se pudo realizar el depósito", Alert.AlertType.ERROR);
+            }
+        } else {
+            mostrarAlerta("Error", "Ingrese una cantidad válida", Alert.AlertType.ERROR);
+        }
+    }
+});
+
+retiroButton.setOnAction(e -> {
+    // Obtener la lista de cuentas del usuario actual
+    List<CuentaInfo> cuentasUsuario = db.obtenerInfoCuentasUsuario(usuario.getId());
+
+    // Crear un diálogo de selección de cuenta
+    ChoiceDialog<CuentaInfo> dialog = new ChoiceDialog<>(cuentasUsuario.get(0), cuentasUsuario);
+    dialog.setTitle("Selección de Cuenta para Retiro");
+    dialog.setHeaderText("Seleccione la cuenta de la cual desea realizar el retiro:");
+    dialog.setContentText("Cuentas disponibles:");
+
+    Optional<CuentaInfo> result = dialog.showAndWait();
+    result.ifPresent(cuentaSeleccionada -> {
+        TextInputDialog amountDialog = new TextInputDialog();
+        amountDialog.setTitle("Retiro");
+        amountDialog.setHeaderText(null);
+        amountDialog.setContentText("Ingrese la cantidad a retirar:");
+
+        Optional<String> amountResult = amountDialog.showAndWait();
+        amountResult.ifPresent(cantidadStr -> {
+            double cantidad = Double.parseDouble(cantidadStr);
+            if (cantidad > 0 && cantidad <= cuentaSeleccionada.getMonto()) {
+                boolean retiroExitoso = db.realizarRetiro(cuentaSeleccionada.getId(), cantidad);
+                if (retiroExitoso) {
+                    dineroValor.setText(String.valueOf(cuentaSeleccionada.getMonto() - cantidad));
                 } else {
-                    mostrarAlerta("Error", "Ingrese una cantidad válida", Alert.AlertType.ERROR);
+                    mostrarAlerta("Error", "No se pudo realizar el retiro", Alert.AlertType.ERROR);
                 }
-            });
+            } else {
+                mostrarAlerta("Error", "Ingrese una cantidad válida", Alert.AlertType.ERROR);
+            }
         });
-
-        retiroButton.setOnAction(e -> {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Retiro");
-            dialog.setHeaderText(null);
-            dialog.setContentText("Ingrese la cantidad a retirar:");
-
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(cantidadStr -> {
-                double cantidad = Double.parseDouble(cantidadStr);
-                if (cantidad > 0 && cantidad <= usuario.getMontoCuenta()) {
-                    boolean retiroExitoso = db.realizarRetiro(usuario, cantidad);
-                    if (retiroExitoso) {
-                        dineroValor.setText(String.valueOf(usuario.getMontoCuenta() - cantidad));
-                    } else {
-                        mostrarAlerta("Error", "No se pudo realizar el retiro", Alert.AlertType.ERROR);
-                    }
-                } else {
-                    mostrarAlerta("Error", "Ingrese una cantidad válida", Alert.AlertType.ERROR);
-                }
-            });
-        });
-
+    });
+});
         Button transferirButton = new Button("Transferir");
         transferirButton.getStyleClass().add("mi-boton");
         transferirButton.setOnAction(e -> {
@@ -299,7 +349,7 @@ public class App extends Application {
                     if (cantidad > 0) {
                         boolean transferenciaExitosa = db.transferirDinero(usuario, destinatarioUsername, cantidadStr);
                         if (transferenciaExitosa) {
-                            dineroValor.setText(String.valueOf(usuario.getDinero() - cantidad));
+                            dineroValor.setText(String.valueOf(usuario.getMontoCuenta() - cantidad));
                             mostrarAlerta("Exito", "La transferencia se completó con éxito",
                                     Alert.AlertType.INFORMATION);
                         } else {

@@ -1,42 +1,8 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "test"
 		}
 	],
-	"settings": {
-		"workbench.colorCustomizations": {
-			"activityBar.activeBackground": "#72a6f8",
-			"activityBar.background": "#72a6f8",
-			"activityBar.foreground": "#15202b",
-			"activityBar.inactiveForeground": "#15202b99",
-			"activityBarBadge.background": "#fde1ec",
-			"activityBarBadge.foreground": "#15202b",
-			"commandCenter.border": "#e7e7e799",
-			"sash.hoverBorder": "#72a6f8",
-			"statusBar.background": "#4287f5",
-			"statusBar.foreground": "#e7e7e7",
-			"statusBarItem.hoverBackground": "#72a6f8",
-			"statusBarItem.remoteBackground": "#4287f5",
-			"statusBarItem.remoteForeground": "#e7e7e7",
-			"titleBar.activeBackground": "#4287f5",
-			"titleBar.activeForeground": "#e7e7e7",
-			"titleBar.inactiveBackground": "#4287f599",
-			"titleBar.inactiveForeground": "#e7e7e799"
-		},
-		"peacock.color": "#4287f5",
-		"java.debug.settings.onBuildFailureProceed": true,
-		"java.project.referencedLibraries": [
-			"lib/**/*.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.base.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.controls.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.fxml.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.graphics.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.media.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.swing.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx.web.jar",
-			"c:\\Users\\rauls\\AppData\\Local\\Programs\\Eclipse Adoptium\\javafx-sdk-21\\lib\\javafx-swt.jar"
-		],
-		"java.configuration.updateBuildConfiguration": "interactive"
-	}
+	"settings": {}
 }

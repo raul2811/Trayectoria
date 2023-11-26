@@ -26,6 +26,7 @@ public class Usuario {
         this.montoCuenta = montoCuenta;
     }
 
+    
     public String getTipoCuenta() {
         return tipoCuenta;
     }
