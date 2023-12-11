@@ -38,8 +38,76 @@ public class base_de_datos {
     }
 
     public void cerrarRecursos(ResultSet resultSet, PreparedStatement statement, Connection connection) {
+<<<<<<< Updated upstream
         if (resultSet != null) {
             try {
+=======
+<<<<<<< Updated upstream
+=======
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar ResultSet: " + e.getMessage());
+            }
+        }
+        
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar PreparedStatement: " + e.getMessage());
+            }
+        }
+        
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar Connection: " + e.getMessage());
+            }
+        }
+    }
+
+    public List<CuentaInfo> obtenerInfoCuentasUsuario(int idUsuario) {
+        conectarBaseDatos(); // Conectar a la base de datos
+        List<CuentaInfo> cuentas = new ArrayList<>();
+        try {
+            if (connection != null && !connection.isClosed()) {
+                String query = "SELECT id, tipo_cuenta_id, monto FROM cuentas WHERE id_usuario = ?";
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.setInt(1, idUsuario);
+                    ResultSet resultSet = statement.executeQuery();
+    
+                    if (!resultSet.isBeforeFirst()) {
+                        System.out.println("No se encontraron cuentas para el usuario con ID: " + idUsuario);
+                    } else {
+                        while (resultSet.next()) {
+                            int idCuenta = resultSet.getInt("id");
+                            String tipoCuenta = resultSet.getString("tipo_cuenta_id");
+                            double monto = resultSet.getDouble("monto");
+    
+                            CuentaInfo cuenta = new CuentaInfo(idCuenta, tipoCuenta, monto);
+                            cuentas.add(cuenta);
+                        }
+                    }
+                }
+            } else {
+                System.out.println("La conexión no está disponible.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la información de las cuentas del usuario: " + e.getMessage());
+        }
+        
+        return cuentas;
+    }
+
+    private void registrarActividad(int idUsuario, int idTipoActividad, double monto, int cuentaOrigenId, int cuentaDestinoId) {
+>>>>>>> Stashed changes
+        try {
+            // Cerrar el ResultSet si no es nulo
+            if (resultSet != null) {
+>>>>>>> Stashed changes
                 resultSet.close();
             } catch (SQLException e) {
                 System.out.println("Error al cerrar ResultSet: " + e.getMessage());
@@ -481,5 +549,53 @@ public class base_de_datos {
         }
         return false;
     }
+<<<<<<< Updated upstream
     
 }
+=======
+<<<<<<< Updated upstream
+}
+=======
+    public boolean transferirEntreCuentasUsuario(int idUsuario, int cuentaOrigenId, int cuentaDestinoId, double monto) {
+        List<CuentaInfo> cuentasUsuario = obtenerInfoCuentasUsuario(idUsuario);
+    
+        // Verificar si las cuentas existen y si la cuenta de origen no es un préstamo
+        boolean cuentaOrigenValida = false;
+        boolean cuentaDestinoValida = false;
+    
+        for (CuentaInfo cuenta : cuentasUsuario) {
+            if (cuenta.getId() == cuentaOrigenId && !cuenta.getTipo().equalsIgnoreCase("prestamo")) {
+                cuentaOrigenValida = true;
+            }
+            if (cuenta.getId() == cuentaDestinoId) {
+                cuentaDestinoValida = true;
+            }
+        }
+    
+        if (!cuentaOrigenValida) {
+            System.out.println("La cuenta de origen no es válida para transferir fondos.");
+            return false;
+        }
+    
+        if (!cuentaDestinoValida) {
+            System.out.println("La cuenta destino no es válida.");
+            return false;
+        }
+    
+        try {
+            if (transferirdinerocuentas(cuentaOrigenId, cuentaDestinoId, monto)) {
+                System.out.println("Transferencia de fondos entre cuentas exitosa.");
+                return true;
+            } else {
+                System.out.println("Error al transferir fondos entre cuentas.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al transferir fondos entre cuentas: " + e.getMessage());
+            return false;
+        }
+}
+}
+    
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes

@@ -248,15 +248,29 @@ public class App extends Application {
         Label nombreLabel = new Label("Nombre:");
         Label dineroLabel = new Label("Dinero:");
         Label nombreValor = new Label(usuario.getNombre() + " " + usuario.getApellido());
+<<<<<<< Updated upstream
         Label dineroValor = new Label(String.valueOf(usuario.getMontoCuenta()));
 
+=======
+<<<<<<< Updated upstream
+        Label dineroValor = new Label(String.valueOf(usuario.getDinero()));
+
+
+    
+=======
+        Label dineroValor = new Label(String.valueOf(usuario.getMontoCuenta()));
+        
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         Button depositoButton = new Button("Depósito");
         Button retiroButton = new Button("Retiro");
 
         depositoButton.getStyleClass().add("mi-boton");
+<<<<<<< Updated upstream
         retiroButton.getStyleClass().add("mi-boton");
 
         depositoButton.setOnAction(e -> {
+<<<<<<< Updated upstream
     // Crear un ComboBox para mostrar las cuentas del usuario
     ComboBox<CuentaInfo> cuentasComboBox = new ComboBox<>();
     cuentasComboBox.setPromptText("Seleccione una cuenta");
@@ -293,6 +307,56 @@ public class App extends Application {
             mostrarAlerta("Error", "Ingrese una cantidad válida", Alert.AlertType.ERROR);
         }
     }
+=======
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Depósito");
+            dialog.setHeaderText(null);
+            dialog.setContentText("Ingrese la cantidad a depositar:");
+    
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(cantidadStr -> {
+                double cantidad = Double.parseDouble(cantidadStr);
+                if (cantidad > 0) {
+                    boolean depositoExitoso = db.realizarDeposito(usuario, cantidad);
+                    if (depositoExitoso) {
+                        dineroValor.setText(String.valueOf(usuario.getDinero() + cantidad));
+                    } else {
+                        mostrarAlerta("Error", "No se pudo realizar el depósito", Alert.AlertType.ERROR);
+                    }
+=======
+retiroButton.getStyleClass().add("mi-boton");
+
+depositoButton.setOnAction(e -> {
+    List<CuentaInfo> cuentasUsuario = db.obtenerInfoCuentasUsuario(usuario.getId());
+
+    ChoiceDialog<CuentaInfo> dialog = new ChoiceDialog<>(cuentasUsuario.get(0), cuentasUsuario);
+    dialog.setTitle("Seleccione la cuenta");
+    dialog.setHeaderText("Seleccione la cuenta en la cual desea realizar el depósito:");
+    dialog.setContentText("Cuentas disponibles:");
+
+    Optional<CuentaInfo> result = dialog.showAndWait();
+    result.ifPresent(cuentaSeleccionada -> {
+        TextInputDialog amountDialog = new TextInputDialog();
+        amountDialog.setTitle("Depósito");
+        amountDialog.setHeaderText(null);
+        amountDialog.setContentText("Ingrese la cantidad a depositar:");
+
+        Optional<String> amountResult = amountDialog.showAndWait();
+        amountResult.ifPresent(cantidadStr -> {
+            double cantidad = Double.parseDouble(cantidadStr);
+            if (cantidad > 0) {
+                boolean depositoExitoso = db.realizarDeposito(cuentaSeleccionada.getId(), cantidad);
+                if (depositoExitoso) {
+                    dineroValor.setText(String.valueOf(cuentaSeleccionada.getMonto() + cantidad));
+                } else {
+                    mostrarAlerta("Error", "No se pudo realizar el depósito", Alert.AlertType.ERROR);
+                }
+            } else {
+                mostrarAlerta("Error", "Ingrese una cantidad válida", Alert.AlertType.ERROR);
+            }
+        });
+    });
+>>>>>>> Stashed changes
 });
 
 retiroButton.setOnAction(e -> {
@@ -319,6 +383,10 @@ retiroButton.setOnAction(e -> {
                 boolean retiroExitoso = db.realizarRetiro(cuentaSeleccionada.getId(), cantidad);
                 if (retiroExitoso) {
                     dineroValor.setText(String.valueOf(cuentaSeleccionada.getMonto() - cantidad));
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                 } else {
                     mostrarAlerta("Error", "No se pudo realizar el retiro", Alert.AlertType.ERROR);
                 }
