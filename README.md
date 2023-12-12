@@ -22,7 +22,7 @@ Agradezco cualquier sugerencia, corrección o contribución a este repositorio. 
 
 ## Contacto 📫
 
-Si deseas conectarte, compartir ideas o simplemente charlar sobre código y tecnología, no dudes en contactarme. Puedes encontrarme en [mi perfil de GitHub]([https://github.com/tuusuario](https://github.com/raul2811)).
+Si deseas conectarte, compartir ideas o simplemente charlar sobre código y tecnología, no dudes en contactarme. Puedes encontrarme en [mi perfil de GitHub](https://github.com/tuusuario](https://github.com/raul2811)).
 
 ¡Gracias por visitar y ser parte de mi viaje como ingeniero en informática! 👨‍💻
 
