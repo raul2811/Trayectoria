@@ -1,5 +1,5 @@
 import reflex as rx
 
 config = rx.Config(
-    app_name="Reflex"
+    app_name="Okinawa-web",
 )

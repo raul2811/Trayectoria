@@ -1,29 +1,51 @@
-.badground_slider{
+html {
+    scroll-behavior: smooth;
+    scroll-padding: var(--scroll-padding, 5rem);
+}
+html::-webkit-scrollbar {/*elimana la barra de scrooll de opera ,chrome*/
+    display: none;
+}
+html{-ms-overflow-style:none;  /*elimana la barra de scrooll de IE and Edge */
+scrollbar-width: none;  /* elimana la barra de scrooll de Firefox */
+}
+.content_1{/* Clase que controla el fondo de el index */
     padding-top:10%;
-	background:url(fondo.webp);
 	background-position:center;
 	background-size: cover;
 	background-repeat:no-repeat;
-	height:100vh;
+	height:auto;
     animation: slide 20s infinite;
 }
-@keyframes slide{
-    25%{background:url(fondo.webp);
+@keyframes slide{/* propiedad que controla las imagenes que pasan en el fondo en el index*/
+    0%{background:url(fondo.webp);
         padding-top:10%;
         background-position:center;
         background-size: cover;
         background-repeat:no-repeat;
-        height:100vh;}
-    50%{background:url(fondo2.webp);padding-top:10%;
+        height:auto;}
+        
+    25%{background:url(fondo2.webp);padding-top:10%;
         background-position:center;
         background-size: cover;
         background-repeat:no-repeat;
-        height:100vh;}
-    75%{background:url(fondo.webp);
+        height:auto;}
+    50%{background:url(fondo3.jpg);
         padding-top:10%;
         background-position:center;
         background-size: cover;
         background-repeat:no-repeat;
-        height:100vh;}
-    100%{background:url(fondo2.webp);}
+        height:auto;}
+    100%{background:url(fondo4.webp);padding-top:10%;
+        background-position:center;
+        background-size: cover;
+        background-repeat:no-repeat;
+        height:auto;}
+}
+.Section_1{
+    
+    background-color: white;
+    background-size: cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    
 }
