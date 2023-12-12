@@ -1,25 +1,25 @@
-# Ejercicios de Python
+# Ejercicios de Python 🐍
 
 ¡Bienvenido a mi repositorio de ejercicios en Python! Aquí encontrarás una variedad de proyectos, scripts y ejercicios que he realizado para practicar y aprender Python.
 
-## Estructura del Repositorio
+## Estructura del Repositorio 📂
 
-- **[Bot_contrato](Python/Bot_contrato/)**: Proyecto de un bot relacionado con contratos.
-- **[Clases](Python/Clases/)**: Ejercicios o proyectos relacionados con clases en Python.
-- **[Codewars](Python/Codewars/)**: Ejercicios resueltos de Codewars u otros sitios similares.
-- **[Django-Flask](Python/Django-Flask/)**: Proyectos utilizando Django o Flask.
-- **[instalador_mods_minecraft_server](Python/instalador_mods_minecraft_server/)**: Herramienta o proyecto para instalar mods en un servidor de Minecraft.
+- **[Archivo Python para convertir formatos de archivo](Python/Archivo%20Python%20para%20convertir%20formatos%20de%20archivo/)**: Script para convertir formatos de archivo.
+- **[Archivo Python para eliminar desde un archivo de texto](Python/Archivo%20Python%20para%20eliminar%20desde%20un%20archivo%20de%20texto/)**: Script para eliminar desde un archivo de texto.
+- **[Ejercicios o proyectos relacionados con clases en Python](Python/Ejercicios%20o%20proyectos%20relacionados%20con%20clases%20en%20Python/)**: Ejercicios específicos relacionados con clases en Python.
+- **[Ejercicios resueltos de Codewars u otros sitios similares](Python/Ejercicios%20resueltos%20de%20Codewars%20u%20otros%20sitios%20similares/)**: Soluciones a ejercicios de Codewars u otros sitios similares.
+- **[Herramienta para instalar mods en un servidor de Minecraft](Python/Herramienta%20para%20instalar%20mods%20en%20un%20servidor%20de%20Minecraft/)**: Herramienta para instalar mods en un servidor de Minecraft.
 - **[Okinawa-Estudio-Web](Python/Okinawa-Estudio-Web/)**: Proyecto relacionado con un estudio web en Okinawa.
-- **[Proyecto_CP](Python/Proyecto_CP/)**: Proyecto relacionado con la práctica profesional.
-- **[cbr a cbz.py](Python/cbr_a_cbz.py)**: Archivo Python para convertir formatos de archivo.
-- **[contrato.py](Python/contrato.py)**: Archivo Python relacionado con la gestión de contratos.
-- **[del_desde_txt.py](Python/del_desde_txt.py)**: Archivo Python para eliminar desde un archivo de texto.
-## Motivación
+- **[Proyecto de un bot relacionado con contratos](Python/Proyecto%20de%20un%20bot%20relacionado%20con%20contratos/)**: Proyecto de un bot relacionado con contratos.
+- **[Proyecto relacionado con la práctica profesional](Python/Proyecto%20relacionado%20con%20la%20práctica%20profesional/)**: Proyecto específico relacionado con la práctica profesional.
+- **[Proyectos utilizando Django o Flask](Python/Proyectos%20utilizando%20Django%20o%20Flask/)**: Proyectos desarrollados utilizando Django o Flask.
 
-Este repositorio es una recopilación de mi práctica y aprendizaje en Python a lo largo de mi carrera como ingeniero en informática. Cada proyecto y script representa una parte de mi viaje de aprendizaje y desarrollo en este lenguaje.
+## Descripción 📝
 
-## Contacto
+Este repositorio contiene una serie de carpetas que representan diferentes proyectos, scripts y ejercicios que he desarrollado mientras aprendía y practicaba Python. Cada carpeta contiene código relacionado con su título y representa un aspecto específico de mi aprendizaje.
+
+## Contacto 📫
 
 Si tienes alguna pregunta, sugerencia o simplemente quieres charlar sobre código, no dudes en contactarme. Puedes encontrarme en [mi perfil de GitHub](https://github.com/raul2811).
 
-¡Gracias por visitar y explorar mis ejercicios en Python!
+¡Gracias por explorar mi trayectoria en Python! 🚀
