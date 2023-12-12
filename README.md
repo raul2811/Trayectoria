@@ -5,10 +5,7 @@
 ## Estructura del Repositorio 📂
 
 - **[C](C/)**: Ejercicios, proyectos y avances en el lenguaje C.
-- **[Django-Flask](Django-Flask/)**: Proyectos basados en Django y Flask.
 - **[Java](Java/)**: Códigos, proyectos y aprendizaje en Java.
-- **[JavaFX](Javafx/)**: Aplicaciones desarrolladas con JavaFX.
-- **[Jupyter](Jupyter/)**: Notebooks de Jupyter con experimentos y prácticas.
 - **[Python](Python/)**: Códigos, proyectos y exploración en Python.
 
 ## Motivación 💡
@@ -25,7 +22,7 @@ Agradezco cualquier sugerencia, corrección o contribución a este repositorio. 
 
 ## Contacto 📫
 
-Si deseas conectarte, compartir ideas o simplemente charlar sobre código y tecnología, no dudes en contactarme. Puedes encontrarme en [mi perfil de GitHub]([https://github.com/tuusuario](https://github.com/raul2811)).
+Si deseas conectarte, compartir ideas o simplemente charlar sobre código y tecnología, no dudes en contactarme. Puedes encontrarme en [mi perfil de GitHub](https://github.com/tuusuario](https://github.com/raul2811)).
 
 ¡Gracias por visitar y ser parte de mi viaje como ingeniero en informática! 👨‍💻
 
