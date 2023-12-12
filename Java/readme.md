@@ -5,7 +5,6 @@
 ## Estructura del Repositorio 🗂️
 
 - **[Javafx](Java/Javafx/)**: Proyectos o ejercicios relacionados con JavaFX.
-- **[lib](Java/lib/)**: Directorio para almacenar bibliotecas o archivos de dependencias.
 - **[clases](Java/clases/)**: Directorio para archivos de clases Java individuales.
 - **[Edad](Java/Edad/)**: Ejercicios o proyectos relacionados con la gestión de la edad.
 - **[otros](Java/otros/)**: Otros archivos Java.
