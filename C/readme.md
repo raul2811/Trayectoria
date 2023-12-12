@@ -4,8 +4,8 @@
 
 ## Estructura del Repositorio 📁
 
-- **[Año#1](C/Año1/)**: Descripción breve del ejercicio o proyecto.
-- **[Año#2](C/Año2/)**: Descripción breve del ejercicio o proyecto.
+- **[Año#1](C/Año1/)**: 1 año de carrera.
+- **[Año#2](C/Año2/)**: 2 año de carrera.
 
 ## Descripción 📝
 
