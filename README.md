@@ -5,10 +5,7 @@
 ## Estructura del Repositorio 📂
 
 - **[C](C/)**: Ejercicios, proyectos y avances en el lenguaje C.
-- **[Django-Flask](Django-Flask/)**: Proyectos basados en Django y Flask.
 - **[Java](Java/)**: Códigos, proyectos y aprendizaje en Java.
-- **[JavaFX](Javafx/)**: Aplicaciones desarrolladas con JavaFX.
-- **[Jupyter](Jupyter/)**: Notebooks de Jupyter con experimentos y prácticas.
 - **[Python](Python/)**: Códigos, proyectos y exploración en Python.
 
 ## Motivación 💡
