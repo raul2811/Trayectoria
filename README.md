@@ -7,6 +7,7 @@
 - **[C](C/)**: Ejercicios, proyectos y avances en el lenguaje C.
 - **[Java](Java/)**: Códigos, proyectos y aprendizaje en Java.
 - **[Python](Python/)**: Códigos, proyectos y exploración en Python.
+- **[Rust](Rust/)**: Códigos, proyectos y exploración en Rust.
 
 ## Motivación 💡
 
