@@ -6,5 +6,4 @@ fn main() {
     println!("number_64: El numero es {}, es inmutable y tiene un tamaño de 64 bits.\nnumber_32: El numero es {}, es mutable y tiene un tamaño de 32 bits.", number_64, number_32);
     number_32=3; //reasignamos el valor de number_32
     println!("number_64: El numero es {}, es inmutable y tiene un tamaño de 64 bits.\nnumber_32: El numero es {}, es mutable y tiene un tamaño de 32 bits.", number_64, number_32);
-
 }
